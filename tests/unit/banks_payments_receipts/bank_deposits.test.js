@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getBankDeposits', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'bank_deposits',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getBankAccount', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'bank_accounts/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -49,7 +50,7 @@ describe('createBankDeposit', () => {
     it('throws an error when a mandatory field is missing', () => {
         expect(() => instance.createBankDeposit()).toThrowError();
         expect(() => instance.createBankDeposit({
-            from_bank_account_id: 1
+            from_bank_account_id: 1,
         })).toThrowError();
         expect(() => instance.createBankDeposit({
             from_bank_account_id: 1,
@@ -85,7 +86,7 @@ describe('createBankDeposit', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'bank_deposits',
-            { bank_deposit: fields }
+            { bank_deposit: fields },
         ]);
     });
 });
@@ -104,7 +105,7 @@ describe('updateBankDeposit', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'bank_deposits/KEY',
-            { bank_deposit: fields }
+            { bank_deposit: fields },
         ]);
     });
 });
@@ -115,7 +116,7 @@ describe('deleteBankDeposit', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteBankDeposit('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getTaxRates', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'tax_rates',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getTaxRate', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'tax_rates/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -59,7 +60,7 @@ describe('createTaxRate', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'tax_rates',
-            { tax_rate: fields }
+            { tax_rate: fields },
         ]);
     });
 });
@@ -78,7 +79,7 @@ describe('updateTaxRate', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'tax_rates/KEY',
-            { tax_rate: fields }
+            { tax_rate: fields },
         ]);
     });
 });
@@ -89,7 +90,7 @@ describe('deleteTaxRate', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteTaxRate('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

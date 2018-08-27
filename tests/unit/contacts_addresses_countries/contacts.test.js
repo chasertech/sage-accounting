@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getContacts', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'contacts',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getContact', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'contacts/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -67,7 +68,7 @@ describe('createContact', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'contacts',
-            { contact: fields }
+            { contact: fields },
         ]);
     });
 });
@@ -86,7 +87,7 @@ describe('updateContact', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'contacts/KEY',
-            { contact: fields }
+            { contact: fields },
         ]);
     });
 });
@@ -97,7 +98,7 @@ describe('deleteContact', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteContact('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

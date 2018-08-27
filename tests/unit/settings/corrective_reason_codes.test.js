@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getCorrectiveReasonCodes', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'corrective_reason_codes',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getCorrectiveReasonCode', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'corrective_reason_codes/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });

@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getTaxReturnFrequencies', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'tax_return_frequencies',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getTaxReturnFrequency', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'tax_return_frequencies/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });

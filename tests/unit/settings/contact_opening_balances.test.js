@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getContactOpeningBalances', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'contact_opening_balances',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getContactOpeningBalance', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'contact_opening_balances/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -49,7 +50,7 @@ describe('createContactOpeningBalance', () => {
     it('throws an error when a mandatory field is missing', () => {
         expect(() => instance.createContactOpeningBalance()).toThrowError();
         expect(() => instance.createContactOpeningBalance({
-            contact_opening_balance_type_id: 1
+            contact_opening_balance_type_id: 1,
         })).toThrowError();
         expect(() => instance.createContactOpeningBalance({
             contact_opening_balance_type_id: 1,
@@ -75,7 +76,7 @@ describe('createContactOpeningBalance', () => {
             date: '2018-07-11',
             contact_id: 1,
             reference: 'ref',
-            total_amount: 1
+            total_amount: 1,
         };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
@@ -85,7 +86,7 @@ describe('createContactOpeningBalance', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'contact_opening_balances',
-            { contact_opening_balance: fields }
+            { contact_opening_balance: fields },
         ]);
     });
 });
@@ -104,7 +105,7 @@ describe('updateContactOpeningBalance', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'contact_opening_balances/KEY',
-            { contact_opening_balance: fields }
+            { contact_opening_balance: fields },
         ]);
     });
 });
@@ -115,7 +116,7 @@ describe('deleteContactOpeningBalance', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteContactOpeningBalance('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

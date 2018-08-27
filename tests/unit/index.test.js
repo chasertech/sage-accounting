@@ -1,5 +1,6 @@
 const SageOne = require('../../lib/index');
 const request = require('request-promise');
+
 let instance;
 
 beforeEach(() => {
@@ -27,12 +28,12 @@ test('creates SageOne instance with given data', () => {
 describe('getAuthorizationURL', () => {
     test('returns the respective authorization URL', () => {
         const url = instance.getAuthorizationURL('//test');
-        expect(url).toBe('https://www.sageone.com/oauth2/auth/central?client_id=test_client_id&response_type=code&scope=full_access&callback_url=%2F%2Ftest')
+        expect(url).toBe('https://www.sageone.com/oauth2/auth/central?client_id=test_client_id&response_type=code&scope=full_access&callback_url=%2F%2Ftest');
     });
 
     test('returns the respective authorization URL with different scope', () => {
         const url = instance.getAuthorizationURL('//test', 'readonly');
-        expect(url).toBe('https://www.sageone.com/oauth2/auth/central?client_id=test_client_id&response_type=code&scope=readonly&callback_url=%2F%2Ftest')
+        expect(url).toBe('https://www.sageone.com/oauth2/auth/central?client_id=test_client_id&response_type=code&scope=readonly&callback_url=%2F%2Ftest');
     });
 });
 
@@ -80,7 +81,7 @@ describe('renewAccessToken', () => {
 
         await instance.renewAccessToken();
 
-        expect(instance.token).toMatchObject(newToken)
+        expect(instance.token).toMatchObject(newToken);
     });
 
     it('throws an error when an invalid country code is used', async () => {
@@ -110,9 +111,9 @@ describe('revokeToken', () => {
         expect(options).toMatchObject({
             body: {
                 client_id: 'test_client_id',
-                token: 'test_access_token'
+                token: 'test_access_token',
             },
-            json: true
+            json: true,
         });
     });
 
@@ -138,8 +139,8 @@ describe('makeRequest', () => {
         const mockResult = { RESULT: 1 };
         request.get.mockReturnValueOnce(Promise.resolve(mockResult));
         const result = await instance.makeRequest('GET', 'sales_invoices', { attributes: 'all' });
-        
-        expect(mockResult).toMatchObject(result)
+
+        expect(mockResult).toMatchObject(result);
         expect(request.get.mock.calls.length).toBe(1);
 
         const [options] = request.get.mock.calls[0];
@@ -151,8 +152,8 @@ describe('makeRequest', () => {
             {
                 Authorization: 'Bearer test_access_token',
                 'X-Site': 'test_resource_owner_id',
-                'ocp-apim-subscription-key': 'test_primary_key'
-            }
+                'ocp-apim-subscription-key': 'test_primary_key',
+            },
         });
     });
 
@@ -172,10 +173,10 @@ describe('makeRequest', () => {
             {
                 Authorization: 'Bearer test_access_token',
                 'X-Site': 'test_resource_owner_id',
-                'ocp-apim-subscription-key': 'test_primary_key'
+                'ocp-apim-subscription-key': 'test_primary_key',
             },
             body: { amount: 1000 },
-            json: true
+            json: true,
         });
     });
 });
@@ -192,8 +193,8 @@ describe('makeCoreRequest', () => {
         const mockResult = { RESULT: 1 };
         request.get.mockReturnValueOnce(Promise.resolve(mockResult));
         const result = await instance.makeCoreRequest('business');
-        
-        expect(mockResult).toMatchObject(result)
+
+        expect(mockResult).toMatchObject(result);
         expect(request.get.mock.calls.length).toBe(1);
 
         const [options] = request.get.mock.calls[0];
@@ -204,8 +205,8 @@ describe('makeCoreRequest', () => {
             {
                 Authorization: 'Bearer test_access_token',
                 'X-Site': 'test_resource_owner_id',
-                'ocp-apim-subscription-key': 'test_primary_key'
-            }
+                'ocp-apim-subscription-key': 'test_primary_key',
+            },
         });
     });
 });

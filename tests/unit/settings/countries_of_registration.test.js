@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getCountriesOfRegistration', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'countries_of_registration',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getCountryOfRegistration', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'countries_of_registration/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });

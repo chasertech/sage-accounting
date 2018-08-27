@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getAddressRegions', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'address_regions',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getAddressRegion', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'address_regions/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });

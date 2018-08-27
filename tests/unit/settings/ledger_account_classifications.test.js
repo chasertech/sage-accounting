@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getLedgerAccountClassifications', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'ledger_account_classifications',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getLedgerAccountClassification', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'ledger_account_classifications/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });

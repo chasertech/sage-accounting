@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -19,7 +20,7 @@ describe('getBusinessRelationships', () => {
         instance.makeCoreRequest.mockReturnValueOnce(Promise.resolve(businessRelationshipsMock));
 
         const result = await instance.getBusinessRelationships();
-        
+
         expect(result).toMatchObject(businessRelationshipsMock);
         const [asset] = instance.makeCoreRequest.mock.calls[0];
 

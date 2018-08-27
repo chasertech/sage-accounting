@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getOtherPayments', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'other_payments',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getOtherPayment', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'other_payments/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -68,7 +69,7 @@ describe('createOtherPayment', () => {
             transaction_type_id: 1,
             date: new Date(),
             total_amount: 10,
-            payment_lines: []
+            payment_lines: [],
         };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
@@ -78,7 +79,7 @@ describe('createOtherPayment', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'other_payments',
-            { other_payment: fields }
+            { other_payment: fields },
         ]);
     });
 });
@@ -97,7 +98,7 @@ describe('updateOtherPayment', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'other_payments/KEY',
-            { other_payment: fields }
+            { other_payment: fields },
         ]);
     });
 });
@@ -108,7 +109,7 @@ describe('deleteOtherPayment', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteOtherPayment('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

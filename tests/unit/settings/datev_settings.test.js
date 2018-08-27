@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getDatevSettings', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'datev_settings',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -43,7 +44,7 @@ describe('updateDatevSettings', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'datev_settings',
-            { datev_settings: fields }
+            { datev_settings: fields },
         ]);
     });
 });

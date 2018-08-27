@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getMigrations', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'migrations',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -43,7 +44,7 @@ describe('updateMigrations', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'migrations',
-            { migrations: fields }
+            { migrations: fields },
         ]);
     });
 });

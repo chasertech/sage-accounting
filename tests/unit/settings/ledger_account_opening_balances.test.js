@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getLedgerAccountOpeningBalances', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'ledger_account_opening_balances',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getLedgerAccountOpeningBalance', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'ledger_account_opening_balances/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -49,7 +50,7 @@ describe('createLedgerAccountOpeningBalance', () => {
     it('throws an error when a mandatory field is missing', () => {
         expect(() => instance.createJournalCode()).toThrowError();
         expect(() => instance.createJournalCode({
-            ledger_account_id: 'test'
+            ledger_account_id: 'test',
         })).toThrowError();
         expect(() => instance.createJournalCode({
             ledger_account_id: 'test',
@@ -62,7 +63,7 @@ describe('createLedgerAccountOpeningBalance', () => {
         const fields = {
             ledger_account_id: 'test',
             debit: 1,
-            credit: 1
+            credit: 1,
         };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
@@ -72,7 +73,7 @@ describe('createLedgerAccountOpeningBalance', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'ledger_account_opening_balances',
-            { ledger_account_opening_balance: fields }
+            { ledger_account_opening_balance: fields },
         ]);
     });
 });
@@ -91,7 +92,7 @@ describe('updateLedgerAccountOpeningBalance', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'ledger_account_opening_balances/KEY',
-            { ledger_account_opening_balance: fields }
+            { ledger_account_opening_balance: fields },
         ]);
     });
 });
@@ -102,7 +103,7 @@ describe('deleteLedgerAccountOpeningBalance', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteLedgerAccountOpeningBalance('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

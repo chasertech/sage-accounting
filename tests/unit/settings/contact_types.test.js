@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getContactTypes', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'contact_types',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getContactType', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'contact_types/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });

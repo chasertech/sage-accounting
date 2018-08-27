@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getLegalFormTypes', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'legal_form_types',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getLegalFormType', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'legal_form_types/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });

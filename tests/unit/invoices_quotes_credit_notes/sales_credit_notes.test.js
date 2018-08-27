@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getSalesCreditNotes', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'sales_credit_notes',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getSalesCreditNote', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'sales_credit_notes/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -49,7 +50,7 @@ describe('createSalesCreditNote', () => {
     it('throws an error when a mandatory field is missing', () => {
         expect(() => instance.createSalesCreditNote()).toThrowError();
         expect(() => instance.createSalesCreditNote({
-            contact_id: 1
+            contact_id: 1,
         })).toThrowError();
         expect(() => instance.createSalesCreditNote({
             contact_id: 1,
@@ -62,7 +63,7 @@ describe('createSalesCreditNote', () => {
         const fields = {
             contact_id: 1,
             date: 1,
-            invoice_lines: []
+            invoice_lines: [],
         };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
@@ -72,7 +73,7 @@ describe('createSalesCreditNote', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'sales_credit_notes',
-            { sales_credit_notes: fields }
+            { sales_credit_notes: fields },
         ]);
     });
 });
@@ -91,7 +92,7 @@ describe('updateSalesCreditNote', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'sales_credit_notes/KEY',
-            { sales_credit_notes: fields }
+            { sales_credit_notes: fields },
         ]);
     });
 });
@@ -102,7 +103,7 @@ describe('deleteSalesCreditNote', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteSalesCreditNote('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

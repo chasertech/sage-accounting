@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getJournalCodes', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'journal_codes',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getJournalCode', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'journal_codes/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -49,7 +50,7 @@ describe('createBankOpeningBalance', () => {
     it('throws an error when a mandatory field is missing', () => {
         expect(() => instance.createJournalCode()).toThrowError();
         expect(() => instance.createJournalCode({
-            name: 'test'
+            name: 'test',
         })).toThrowError();
         expect(() => instance.createJournalCode({
             name: 'test',
@@ -62,7 +63,7 @@ describe('createBankOpeningBalance', () => {
         const fields = {
             name: 'test',
             code: 1,
-            journal_code_type_id: 1
+            journal_code_type_id: 1,
         };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
@@ -72,7 +73,7 @@ describe('createBankOpeningBalance', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'journal_codes',
-            { journal_code: fields }
+            { journal_code: fields },
         ]);
     });
 });
@@ -91,7 +92,7 @@ describe('updateJournalCode', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'journal_codes/KEY',
-            { journal_code: fields }
+            { journal_code: fields },
         ]);
     });
 });
@@ -102,7 +103,7 @@ describe('deleteJournalCode', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteJournalCode('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

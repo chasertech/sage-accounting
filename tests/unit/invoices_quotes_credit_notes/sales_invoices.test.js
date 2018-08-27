@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getSalesInvoices', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'sales_invoices',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getSalesInvoice', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'sales_invoices/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -49,7 +50,7 @@ describe('createSalesInvoice', () => {
     it('throws an error when a mandatory field is missing', () => {
         expect(() => instance.createSalesInvoice()).toThrowError();
         expect(() => instance.createSalesInvoice({
-            contact_id: 1
+            contact_id: 1,
         })).toThrowError();
         expect(() => instance.createSalesInvoice({
             contact_id: 1,
@@ -62,7 +63,7 @@ describe('createSalesInvoice', () => {
         const fields = {
             contact_id: 1,
             date: 1,
-            invoice_lines: []
+            invoice_lines: [],
         };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
@@ -72,7 +73,7 @@ describe('createSalesInvoice', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'sales_invoices',
-            { sales_invoice: fields }
+            { sales_invoice: fields },
         ]);
     });
 });
@@ -91,7 +92,7 @@ describe('updateSalesInvoice', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'sales_invoices/KEY',
-            { sales_invoice: fields }
+            { sales_invoice: fields },
         ]);
     });
 });
@@ -102,7 +103,7 @@ describe('deleteSalesInvoice', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteSalesInvoice('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

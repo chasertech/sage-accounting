@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getBusinessSettings', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'business_settings',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -43,7 +44,7 @@ describe('updateBusinessSettings', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'business_settings',
-            { business_settings: fields }
+            { business_settings: fields },
         ]);
     });
 });

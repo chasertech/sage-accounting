@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getEmailSettings', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'email_settings',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -43,7 +44,7 @@ describe('updateEmailSettings', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'email_settings',
-            { email_settings: fields }
+            { email_settings: fields },
         ]);
     });
 });

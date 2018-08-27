@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getTaxProfiles', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'tax_profiles',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getTaxProfile', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'tax_profiles/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -59,7 +60,7 @@ describe('updateTaxProfile', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'tax_profiles/KEY',
-            { tax_profile: fields }
+            { tax_profile: fields },
         ]);
     });
 });

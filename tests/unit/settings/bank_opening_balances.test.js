@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getBankOpeningBalances', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'bank_opening_balances',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getBankOpeningBalance', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'bank_opening_balances/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -49,7 +50,7 @@ describe('createBankOpeningBalance', () => {
     it('throws an error when a mandatory field is missing', () => {
         expect(() => instance.createBankOpeningBalance()).toThrowError();
         expect(() => instance.createBankOpeningBalance({
-            bank_account_id: 1
+            bank_account_id: 1,
         })).toThrowError();
         expect(() => instance.createBankOpeningBalance({
             bank_account_id: 1,
@@ -78,7 +79,7 @@ describe('createBankOpeningBalance', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'bank_opening_balances',
-            { bank_opening_balance: fields }
+            { bank_opening_balance: fields },
         ]);
     });
 });
@@ -97,7 +98,7 @@ describe('updateBankOpeningBalance', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'bank_opening_balances/KEY',
-            { bank_opening_balance: fields }
+            { bank_opening_balance: fields },
         ]);
     });
 });
@@ -108,7 +109,7 @@ describe('deleteBankOpeningBalance', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteBankOpeningBalance('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getInvoiceSettings', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'invoice_settings',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -43,7 +44,7 @@ describe('updateInvoiceSettings', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'invoice_settings',
-            { invoice_settings: fields }
+            { invoice_settings: fields },
         ]);
     });
 });

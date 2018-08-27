@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getAddresses', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'addresses',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getAddress', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'addresses/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -72,7 +73,7 @@ describe('createAddress', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'addresses',
-            { address: fields }
+            { address: fields },
         ]);
     });
 });
@@ -91,7 +92,7 @@ describe('updateAddress', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'addresses/KEY',
-            { address: fields }
+            { address: fields },
         ]);
     });
 });
@@ -102,7 +103,7 @@ describe('deleteAddress', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteAddress('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

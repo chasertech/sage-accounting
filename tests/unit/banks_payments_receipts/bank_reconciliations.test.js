@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getBankReconciliations', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'bank_reconciliations',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getBankReconciliation', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'bank_reconciliations/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -63,7 +64,7 @@ describe('createBankReconciliation', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'bank_reconciliations',
-            { bank_reconciliation: fields }
+            { bank_reconciliation: fields },
         ]);
     });
 });
@@ -82,7 +83,7 @@ describe('updateBankReconciliation', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
             'bank_reconciliations/KEY',
-            { bank_reconciliation: fields }
+            { bank_reconciliation: fields },
         ]);
     });
 });

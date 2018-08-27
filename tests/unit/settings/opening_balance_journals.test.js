@@ -1,4 +1,5 @@
 const SageOne = require('../../../lib/index');
+
 let instance;
 
 beforeEach(() => {
@@ -24,7 +25,7 @@ describe('getOpeningBalanceJournals', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'opening_balance_journals',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -40,7 +41,7 @@ describe('getOpeningBalanceJournal', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
             'opening_balance_journals/KEY',
-            { attributes: 'all' }
+            { attributes: 'all' },
         ]);
     });
 });
@@ -53,7 +54,7 @@ describe('createOpeningBalanceJournal', () => {
     it('builds the request correctly', async () => {
         const mockResult = { id: 1 };
         const fields = {
-            journal_lines: []
+            journal_lines: [],
         };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
@@ -63,7 +64,7 @@ describe('createOpeningBalanceJournal', () => {
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
             'opening_balance_journals',
-            { opening_balance_journal: fields }
+            { opening_balance_journal: fields },
         ]);
     });
 });
@@ -74,7 +75,7 @@ describe('deleteOpeningBalanceJournal', () => {
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
         const result = await instance.deleteOpeningBalanceJournal('KEY');
-        
+
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',

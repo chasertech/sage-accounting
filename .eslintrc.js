@@ -7,6 +7,7 @@ module.exports = {
         describe: false,
         it: false,
         expect: false,
+        test: false,
         jest: false,
     },
     rules: {
