@@ -94,7 +94,7 @@ describe('renewAccessToken', () => {
     });
 });
 
-describe('revokeToken', () => {
+describe('revokeAccessToken', () => {
     it('makes the request to revoke the token', async () => {
         const token = { access_token: 'test_access_token' };
         instance.token = token;
@@ -102,7 +102,7 @@ describe('revokeToken', () => {
 
         request.post.mockReturnValueOnce(Promise.resolve({ OK: 1 })); // TODO test call IRL
 
-        await instance.revokeToken();
+        await instance.revokeAccessToken();
 
         expect(request.post.mock.calls.length).toBe(1);
 
@@ -120,7 +120,7 @@ describe('revokeToken', () => {
     it('throws an error when an invalid country code is used', async () => {
         try {
             instance.country = 'ZZ';
-            await instance.revokeToken();
+            await instance.revokeAccessToken();
         } catch (e) {
             expect(e).toEqual(new Error('Invalid country code. Available options: CA, DE, ES, FR, GB, IE, US.'));
         }

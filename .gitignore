@@ -4,3 +4,4 @@ node_modules/
 sandbox*
 coverage
 *.env
+.DS_Store

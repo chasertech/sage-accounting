@@ -48,7 +48,7 @@ const ALLOW_BUTTON_SELECTOR = '[type="submit"]';
 describe('Sage Connection workflow', () => {
     it('should connect an organisation', async () => {
         const authorizationUrl = getAuthorizationURL('http://localhost:3000/callback/');
-        const browser = await puppeteer.launch({ headless: true, ignoreHTTPSErrors: true });
+        const browser = await puppeteer.launch({ headless: false, ignoreHTTPSErrors: true });
         const page = await browser.newPage();
 
         await page.goto(authorizationUrl, { waitUntil: 'networkidle2' });
@@ -74,6 +74,9 @@ describe('Sage Connection workflow', () => {
         expect(invoices).toHaveProperty('$back');
         expect(invoices).toHaveProperty('$itemsPerPage');
         expect(invoices).toHaveProperty('$items');
+
+        const revokeResult = await organisation.revokeAccessToken();
+        expect(revokeResult).toEqual(undefined);
 
         await browser.close();
     });
