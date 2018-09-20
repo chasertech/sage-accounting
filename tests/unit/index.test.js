@@ -28,12 +28,12 @@ test('creates SageOne instance with given data', () => {
 describe('getAuthorizationURL', () => {
     test('returns the respective authorization URL', () => {
         const url = instance.getAuthorizationURL('//test');
-        expect(url).toBe('https://www.sageone.com/oauth2/auth/central?client_id=test_client_id&response_type=code&scope=full_access&callback_url=%2F%2Ftest');
+        expect(url).toBe('https://www.sageone.com/oauth2/auth/central?client_id=test_client_id&response_type=code&scope=full_access&redirect_uri=%2F%2Ftest');
     });
 
     test('returns the respective authorization URL with different scope', () => {
         const url = instance.getAuthorizationURL('//test', 'readonly');
-        expect(url).toBe('https://www.sageone.com/oauth2/auth/central?client_id=test_client_id&response_type=code&scope=readonly&callback_url=%2F%2Ftest');
+        expect(url).toBe('https://www.sageone.com/oauth2/auth/central?client_id=test_client_id&response_type=code&scope=readonly&redirect_uri=%2F%2Ftest');
     });
 });
 

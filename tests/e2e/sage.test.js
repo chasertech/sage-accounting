@@ -20,7 +20,7 @@ const organisationPromise = new Promise((resolve) => {
             process.env.SAGE_PRIMARY_KEY,
             process.env.SAGE_SECONDARY_KEY,
         );
-        await organisation.getAccessToken('http://localhost:3000/callback', code, country);
+        await organisation.getAccessToken('http://localhost:3000/callback/', code, country);
         resolve(organisation);
         res.send('Local callback called');
         server.close();
@@ -34,7 +34,7 @@ function getAuthorizationURL(redirectUri) {
         client_id: process.env.SAGE_CLIENT_ID,
         scope: ['full_access'],
         response_type: 'code',
-        callback_url: redirectUri,
+        redirect_uri: redirectUri,
     });
     return `${SAGE_AUTH_URL}?${query}`;
 }
@@ -43,7 +43,6 @@ const UK_SELECTOR = '#ukflag';
 const EMAIL_SELECTOR = '#sso_Email';
 const PASSWORD_SELECTOR = '#sso_Password';
 const LOGIN_BUTTON_SELECTOR = '[type="submit"]';
-const ALLOW_BUTTON_SELECTOR = '[type="submit"]';
 
 describe('Sage Connection workflow', () => {
     it('should connect an organisation', async () => {
@@ -61,9 +60,6 @@ describe('Sage Connection workflow', () => {
         await page.click(PASSWORD_SELECTOR);
         await page.keyboard.type(process.env.SAGE_PASSWORD);
         await page.click(LOGIN_BUTTON_SELECTOR);
-        await page.waitForNavigation();
-
-        await page.click(ALLOW_BUTTON_SELECTOR);
 
         const organisation = await organisationPromise;
         const invoices = await organisation.getSalesInvoices();
