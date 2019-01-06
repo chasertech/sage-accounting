@@ -48,8 +48,8 @@ describe('getMigrationTaxReturn', () => {
 
 describe('createMigrationTaxReturn', () => {
     it('throws an error when a mandatory field is missing', () => {
-        expect(() => instance.createLedgerAccount()).toThrowError();
-        expect(() => instance.createLedgerAccount({
+        expect(() => instance.createMigrationTaxReturn()).toThrowError();
+        expect(() => instance.createMigrationTaxReturn({
             from_date: new Date(),
             to_date: new Date(),
             total_amount: 1,

@@ -48,7 +48,7 @@ describe('getOpeningBalanceJournal', () => {
 
 describe('createOpeningBalanceJournal', () => {
     it('throws an error when a mandatory field is missing', () => {
-        expect(() => instance.createBankOpeningBalance()).toThrowError();
+        expect(() => instance.createOpeningBalanceJournal()).toThrowError();
     });
 
     it('builds the request correctly', async () => {

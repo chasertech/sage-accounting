@@ -12,115 +12,99 @@ beforeEach(() => {
         'test_token',
     );
     instance.makeRequest = jest.fn();
-    instance.makePDFRequest = jest.fn();
 });
 
-describe('getSalesInvoices', () => {
+describe('getContactPersons', () => {
     it('builds the request correctly', async () => {
         const mockResult = { results: [] };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
-        const result = await instance.getSalesInvoices({ attributes: 'all' });
+        const result = await instance.getContactPersons({ attributes: 'all' });
 
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
-            'sales_invoices',
+            'contact_persons',
             { attributes: 'all' },
         ]);
     });
 });
 
-describe('getSalesInvoice', () => {
+describe('getContactPerson', () => {
     it('builds the request correctly', async () => {
         const mockResult = { results: [] };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
-        const result = await instance.getSalesInvoice('KEY', { attributes: 'all' });
+        const result = await instance.getContactPerson('KEY', { attributes: 'all' });
 
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
-            'sales_invoices/KEY',
+            'contact_persons/KEY',
             { attributes: 'all' },
         ]);
     });
 });
 
-describe('getSalesInvoicePDF', () => {
-    it('builds the request correctly', async () => {
-        const mockResult = { results: [] };
-        instance.makePDFRequest.mockReturnValueOnce(Promise.resolve(mockResult));
-
-        const result = await instance.getSalesInvoicePDF('KEY', { attributes: 'all' });
-
-        expect(result).toMatchObject(mockResult);
-        expect(instance.makePDFRequest.mock.calls[0]).toEqual(['sales_invoices/KEY']);
-    });
-});
-
-describe('createSalesInvoice', () => {
+describe('createContactPerson', () => {
     it('throws an error when a mandatory field is missing', () => {
-        expect(() => instance.createSalesInvoice()).toThrowError();
-        expect(() => instance.createSalesInvoice({
-            contact_id: 1,
-        })).toThrowError();
-        expect(() => instance.createSalesInvoice({
-            contact_id: 1,
-            date: 1,
+        expect(() => instance.createContactPerson()).toThrowError();
+        expect(() => instance.createContactPerson({
+            address_id: 1,
+            name: 'Test',
         })).toThrowError();
     });
 
     it('builds the request correctly', async () => {
         const mockResult = { id: 1 };
         const fields = {
-            contact_id: 1,
-            date: 1,
-            invoice_lines: [],
+            address_id: 1,
+            name: 'Test',
+            contact_person_type_ids: ['CUSTOMER'],
         };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
-        const result = await instance.createSalesInvoice(fields);
+        const result = await instance.createContactPerson(fields);
 
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'POST',
-            'sales_invoices',
-            { sales_invoice: fields },
+            'contact_persons',
+            { contact_person: fields },
         ]);
     });
 });
 
-describe('updateSalesInvoice', () => {
+describe('updateContactPerson', () => {
     it('builds the request correctly', async () => {
         const mockResult = { id: 1 };
         const fields = {
-            date: 1,
+            from_bank_account_id: 3,
         };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
-        const result = await instance.updateSalesInvoice('KEY', fields);
+        const result = await instance.updateContactPerson('KEY', fields);
 
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'PUT',
-            'sales_invoices/KEY',
-            { sales_invoice: fields },
+            'contact_persons/KEY',
+            { contact_person: fields },
         ]);
     });
 });
 
-describe('deleteSalesInvoice', () => {
+describe('deleteContactPerson', () => {
     it('builds the request correctly', async () => {
         const mockResult = { id: 1 };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
-        const result = await instance.deleteSalesInvoice('KEY');
+        const result = await instance.deleteContactPerson('KEY');
 
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'DELETE',
-            'sales_invoices/KEY',
+            'contact_persons/KEY',
         ]);
     });
 });

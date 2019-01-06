@@ -48,11 +48,11 @@ describe('getLedgerAccountOpeningBalance', () => {
 
 describe('createLedgerAccountOpeningBalance', () => {
     it('throws an error when a mandatory field is missing', () => {
-        expect(() => instance.createJournalCode()).toThrowError();
-        expect(() => instance.createJournalCode({
+        expect(() => instance.createLedgerAccountOpeningBalance()).toThrowError();
+        expect(() => instance.createLedgerAccountOpeningBalance({
             ledger_account_id: 'test',
         })).toThrowError();
-        expect(() => instance.createJournalCode({
+        expect(() => instance.createLedgerAccountOpeningBalance({
             ledger_account_id: 'test',
             debit: 1,
         })).toThrowError();

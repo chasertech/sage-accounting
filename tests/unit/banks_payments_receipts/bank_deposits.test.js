@@ -30,17 +30,17 @@ describe('getBankDeposits', () => {
     });
 });
 
-describe('getBankAccount', () => {
+describe('getBankDeposit', () => {
     it('builds the request correctly', async () => {
         const mockResult = { results: [] };
         instance.makeRequest.mockReturnValueOnce(Promise.resolve(mockResult));
 
-        const result = await instance.getBankAccount('KEY', { attributes: 'all' });
+        const result = await instance.getBankDeposit('KEY', { attributes: 'all' });
 
         expect(result).toMatchObject(mockResult);
         expect(instance.makeRequest.mock.calls[0]).toEqual([
             'GET',
-            'bank_accounts/KEY',
+            'bank_deposits/KEY',
             { attributes: 'all' },
         ]);
     });

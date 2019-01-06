@@ -7,7 +7,7 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest tests/unit",
+    "test": "./node_modules/.bin/jest tests/unit --coverage",
     "test:watch": "./node_modules/.bin/jest tests/unit --watchAll",
     "e2e": "./node_modules/.bin/jest tests/e2e",
     "e2e:watch": "./node_modules/.bin/jest tests/e2e --watchAll",

@@ -179,6 +179,60 @@ describe('makeRequest', () => {
             json: true,
         });
     });
+
+    it('makes an appropriate GET request when no options are passed', async () => {
+        const mockResult = { RESULT: 1 };
+        request.get.mockReturnValueOnce(Promise.resolve(mockResult));
+        const result = await instance.makeRequest('GET', 'sales_invoices');
+
+        expect(mockResult).toMatchObject(result);
+        expect(request.get.mock.calls.length).toBe(1);
+
+        const [options] = request.get.mock.calls[0];
+
+        expect(options).toMatchObject({
+            url: 'https://api.columbus.sage.com/uki/sageone/accounts/v3/sales_invoices',
+            qs: {},
+            headers:
+            {
+                Authorization: 'Bearer test_access_token',
+                'X-Site': 'test_resource_owner_id',
+                'ocp-apim-subscription-key': 'test_primary_key',
+            },
+        });
+    });
+});
+
+describe('makePDFRequest', () => {
+    beforeEach(() => {
+        instance.token = {
+            access_token: 'test_access_token',
+            resource_owner_id: 'test_resource_owner_id',
+        };
+    });
+
+    it('makes an appropriate GET request', async () => {
+        const mockResult = { RESULT: 1 };
+        request.get.mockReturnValueOnce(Promise.resolve(mockResult));
+        const result = await instance.makePDFRequest('asset');
+
+        expect(mockResult).toMatchObject(result);
+        expect(request.get.mock.calls.length).toBe(1);
+
+        const [options] = request.get.mock.calls[0];
+
+        expect(options).toMatchObject({
+            url: 'https://api.columbus.sage.com/uki/sageone/accounts/v3/asset',
+            encoding: 'binary',
+            headers:
+            {
+                Authorization: 'Bearer test_access_token',
+                'X-Site': 'test_resource_owner_id',
+                'ocp-apim-subscription-key': 'test_primary_key',
+                Accept: 'application/pdf',
+            },
+        });
+    });
 });
 
 describe('makeCoreRequest', () => {
