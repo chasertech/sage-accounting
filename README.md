@@ -4,6 +4,9 @@ This is a Node.JS wrapper for [Sage One's Version 3 API](https://developer.colum
 
 Minimum node version: 8
 
+## Documentation
+Available methods can be found [here](https://chasertech.github.io/sage-accounting/docs/SageOne.html).
+
 ## How to use
 
 ```javascript
