@@ -1,4 +1,5 @@
-# Sage V3 API Node.JS
+# Sage V3 API Node.JS 
+[![Build Status](https://travis-ci.org/chasertech/sage-accounting.svg?branch=master)](https://travis-ci.org/chasertech/sage-accounting)
 
 This is a Node.JS wrapper for [Sage One's Version 3 API](https://developer.columbus.sage.com/docs#/uki/sageone/accounts).
 
