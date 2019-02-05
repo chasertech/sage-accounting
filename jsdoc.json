@@ -1,0 +1,21 @@
+{
+  "opts": {
+    "enconding": "utf8",
+    "readme": "./README.md",
+    "destination": "docs",
+    "recurse": true,
+    "verbose": true,
+    "template": "node_modules/better-docs",
+    "sort": "file"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "source": {
+    "include": [
+      "./lib"
+    ],
+    "includePattern": ".js$",
+    "excludePattern": "node_modules"
+  }
+}
