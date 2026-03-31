@@ -54,4 +54,4 @@ jobs:
         run: npm run lint
 
       - name: Run Tests
-        run: npm test -- --coverage --no-only
+        run: npm test
