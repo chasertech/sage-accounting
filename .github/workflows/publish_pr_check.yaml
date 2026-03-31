@@ -1,0 +1,22 @@
+name: publish_pr_check
+concurrency: publish_pr_check
+permissions:
+  contents: 'read'
+  id-token: 'write'
+  pull-requests: 'read'
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  main:
+    uses: chasertech/github-action-templates/.github/workflows/npm-lib.yaml@0.0.1
+    with:
+      WORKING_DIR: ./
+      NODE_VERSION: "20"
+      NPM_GCP_WORKLOAD_IDENTITY_PROVIDER: projects/560514638708/locations/global/workloadIdentityPools/gha-pool/providers/gha-provider
+      NPM_GCP_SERVICE_ACCOUNT: chaser-libraries-user@chaser-shared.iam.gserviceaccount.com
+      PR_CHECK: true
+      RUN_TESTS: true
+      RUN_LINT: true
+      PACKAGE_LOCK_FILE_VERSION: 1
