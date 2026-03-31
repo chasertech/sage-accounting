@@ -6,6 +6,9 @@
     "node": ">=8"
   },
   "main": "lib/index.js",
+  "publishConfig": {
+    "registry": "https://europe-npm.pkg.dev/chaser-shared/chaser-npm/"
+  },
   "scripts": {
     "test": "./node_modules/.bin/jest --testEnvironment node tests/unit --coverage",
     "test:watch": "./node_modules/.bin/jest --testEnvironment node tests/unit --watchAll",

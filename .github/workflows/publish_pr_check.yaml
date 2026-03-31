@@ -1,0 +1,57 @@
+name: publish_pr_check
+concurrency: publish_pr_check
+permissions:
+  contents: 'read'
+  id-token: 'write'
+  pull-requests: 'read'
+on:
+  pull_request:
+    branches:
+      - master
+
+env:
+  NODE_VERSION: "20"
+  NPM_GCP_WORKLOAD_IDENTITY_PROVIDER: projects/560514638708/locations/global/workloadIdentityPools/gha-pool/providers/gha-provider
+  NPM_GCP_SERVICE_ACCOUNT: chaser-libraries-user@chaser-shared.iam.gserviceaccount.com
+  PACKAGE_LOCK_FILE_VERSION: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud for npm Artifact Registry
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ env.NPM_GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.NPM_GCP_SERVICE_ACCOUNT }}
+          create_credentials_file: true
+          export_environment_variables: true
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Configure npm auth for Artifact Registry
+        run: npx google-artifactregistry-auth
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check package-lock.json version
+        run: jq -e ".lockfileVersion == ${{ env.PACKAGE_LOCK_FILE_VERSION }}" package-lock.json
+
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Run Tests
+        run: npm test
