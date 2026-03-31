@@ -10,7 +10,7 @@ on:
       - master
 jobs:
   main:
-    uses: chasertech/github-action-templates/.github/workflows/npm-lib.yaml@0.0.1
+    uses: chasertech/github-action-templates/.github/workflows/npm-lib.yaml@0.0.4
     with:
       WORKING_DIR: ./
       NODE_VERSION: "20"
